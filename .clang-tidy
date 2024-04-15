@@ -1,0 +1,2 @@
+Checks: 'clang-analyzer-*,  google-*, performance-*, readability-*, cert-*'
+WarningsAsErrors: true
