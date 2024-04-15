@@ -1,7 +1,13 @@
 #ifndef CMD_H
 #define CMD_H
+// libs header
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/wait.h>
+#include <unistd.h>
 // defines
-#define MAXHELP 1000
+#define MAXHELP 2000
 // bold colors
 #define BBLK "\033[1;30m"
 #define BRED "\033[1;31m"
@@ -21,14 +27,10 @@
 #define MAG "\033[0;35m"
 #define CYN "\033[0;36m"
 #define WHT "\033[0;37m"
-// local includes
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 
 // functions
-//int add(int num1, int num2);
-
-int WorkFlow(char *argv[], int __attribute__((__unused__))argc);
-
-#endif 
+// the workflow of the CLI
+int WorkFlow(char *argv[], int __attribute__((__unused__)) argc);
+// the command executer
+int exe(const char *pathcommand, char *const argemnts[], char *const envp[]);
+#endif
