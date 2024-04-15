@@ -37,7 +37,9 @@ int WorkFlow(char *argv[], int __attribute__((__unused__)) argc) {
       }
       // weight command
       if (strcmp(argv[i], "-w") == 0 || strcmp(argv[i], "--weight") == 0) {
-        printf("the weight is \n");
+        // called the exe function
+        char *ls_arg[] = {"-l", "a"};
+        exe(NULL, ls_arg);
         return 0;
       }
 

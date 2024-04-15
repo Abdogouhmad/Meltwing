@@ -32,5 +32,5 @@
 // the workflow of the CLI
 int WorkFlow(char *argv[], int __attribute__((__unused__)) argc);
 // the command executer
-int exe(const char *pathcommand, char *const argemnts[], char *const envp[]);
+int exe(const char *pathcommand, char *const argemnts[]);
 #endif
