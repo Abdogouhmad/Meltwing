@@ -31,7 +31,7 @@ linter:
 	@$(LT) src/*.c
 format:
 	@$(FT) -i src/*.c
-install:
+install: $(TARGET)
 	@echo "Install The CLI"
 	@sudo cp ./bin/meltwing /usr/bin/
 

@@ -1,4 +1,5 @@
 #include <cmd.h>
+#include <unistd.h>
 
 const char HELP[MAXHELP] =
     "   _____           .__     __    __      __ .__                  \n"
@@ -38,8 +39,14 @@ int WorkFlow(char *argv[], int __attribute__((__unused__)) argc) {
       // weight command
       if (strcmp(argv[i], "-w") == 0 || strcmp(argv[i], "--weight") == 0) {
         // called the exe function
-        char *ls_arg[] = {"-l", "a"};
-        exe(NULL, ls_arg);
+        char *const du_arg[] = {"du", "-h", "--max-depth=1", ".", NULL};
+        // execute the command duff
+        exe("/usr/bin/du", du_arg);
+        // char *const duf_args[] = {"--all"};
+        // exe("/usr/bin/duf", duf_args);
+        // char *duf_arg[] = {"--all"};
+        // exe("/usr/bin/duf", duf_arg);
+        // execlp("du", "du", du_arg, NULL);
         return 0;
       }
 

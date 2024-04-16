@@ -10,5 +10,5 @@ int main(int __attribute__((__unused__)) argc, char *argv[]) {
   WorkFlow(argv, argc);
 
   // If no matching option is found
-  return 1;
+  return 0;
 }
