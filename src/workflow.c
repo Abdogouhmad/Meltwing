@@ -47,6 +47,15 @@ int WorkFlow(char *argv[], int __attribute__((__unused__)) argc) {
         // char *duf_arg[] = {"--all"};
         // exe("/usr/bin/duf", duf_arg);
         // execlp("du", "du", du_arg, NULL);
+
+        rek_mkdir("./test_dir");
+        FILE *fp = fopen_log("test_dir/hello.log", "w", "hello world");
+        if (fp == NULL) {
+          printf("Failed to open log file\n");
+        } else {
+          printf("Log file opened successfully\n");
+          fclose(fp);
+        }
         return 0;
       }
 

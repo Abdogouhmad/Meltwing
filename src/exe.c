@@ -12,15 +12,6 @@ int exe(const char *pathcommand, char *const argemnts[]) {
     exit(EXIT_FAILURE);
   }
 
-  // for the process id
-  pid_t pid = fork();
-
-  if (pid == -1) {
-    perror("Can't fork the process");
-    exit(EXIT_FAILURE);
-  }
-
-  // child process
   // execlp(pathcommand, pathcommand, argemnts, NULL); // worked for duf
   // command execve(pathcommand, argemnts, NULL); // worked but not
   // effectively

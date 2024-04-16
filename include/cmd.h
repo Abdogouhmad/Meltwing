@@ -1,9 +1,11 @@
 #ifndef CMD_H
 #define CMD_H
 // libs header
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 #include <sys/wait.h>
 #include <unistd.h>
 // defines
@@ -31,6 +33,27 @@
 // functions
 // the workflow of the CLI
 int WorkFlow(char *argv[], int __attribute__((__unused__)) argc);
-// the command executer
+/**
+ * @brief Execute a command
+ * @param pathcommand
+ * @param argemnts
+ * @return int
+ */
 int exe(const char *pathcommand, char *const argemnts[]);
+/**
+ * @brief Open a log file
+ * **create a dir called log if it doesn't exist inside it would**
+ * create a file log.log
+ * brief example: log/pacman.log or log/yay.log
+ * @param filename
+ * @param mode
+ * @return FILE*
+ */
+FILE *fopen_log(const char *filename, const char *mode, const char *content);
+/**
+ * @brief Create a directory
+ * @param path
+ * @return void
+ */
+void rek_mkdir(const char *path);
 #endif
