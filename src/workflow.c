@@ -11,58 +11,110 @@ const char HELP[MAXHELP] =
     "\n" BWHT "Meltwing is a CLI tool that executes simple "
     "commands quickly to automate processes.🕯️\n\n" RESET BRED
     "Usage: \n\n" RESET "meltwing" BGRN " [OPTIONS] [COMMAND]\n\n" RESET BCYN
-    "Commands:\n\n" RESET GRN "  clone\t\t" RESET
+    "Commands:\n\n" RESET GRN "  clone\t\t\t" RESET
     "Clone any repo. Use 'meltwing help clone' to know more 🫠\n" GRN
-    "  push\t\t" RESET "Push the changes to GitHub 😃\n" GRN "  release\t" RESET
-    "Create release tag through the shell command 🙂\n" GRN "  zip\t\t" RESET
-    "Zip your folder 📦\n" GRN "  help\t\t" RESET
+    "  push\t\t\t" RESET "Push the changes to GitHub 😃\n" GRN
+    "  release\t\t" RESET
+    "Create release tag through the shell command 🙂\n" GRN "  zip\t\t\t" RESET
+    "Zip your folder 📦\n" GRN "  help\t\t\t" RESET
     "Print this message or the help of the given subcommand(s)\n\n" BCYN
-    "Options:\n\n" RESET GRN "  -w, --weight\t\t" RESET
+    "Options:\n\n" RESET GRN "  -d, --disk\t\t" RESET
+    "Analysis your disk partition\n" GRN "  -w, --weight\t\t" RESET
     "Measure the files within a directory\n" GRN "  -c, --create\t\t" RESET
     "create a file logs within folder log\n" GRN "  -h, --help\t\t" RESET
     "Get help\n" GRN "  -V, --version\t\t" RESET "CLI version\n";
 
+/*
+ * @breif PrintHelp - print the manual of the cli tool
+ * @retunr 0
+ */
+int PrintHelp() {
+  printf("%s\n", HELP);
+  return 0;
+}
+
+/*
+ * @breif PrintVersion - print the version of the CLI
+ * @retunr 0
+ */
+int PrintVersion() {
+  printf("meltwing 1.0.0\n");
+  return 0;
+}
+
+/*
+ * @breif HandleWeightCommand - Execute the command du with important paramaters
+ * @retunr 0
+ */
+int HandleWeightCommand() {
+  char *const du_arg[] = {"du", "-h", "--max-depth=1", ".", NULL};
+  exe("/usr/bin/du", du_arg);
+  return 0;
+}
+
+/*
+ * @breif HandleCreateCommand - create file log within lgC in desktop folder
+ * it is tempo command that I will use later on
+ * @retunr 0 or error if the file failed to create
+ */
+int HandleCreateCommand() {
+  printf("creating...\n");
+  FILE *file = OpenLogs("~/Desktop/lgC/pacman.log", "w", "hello world\n");
+  if (file != NULL) {
+    printf("File created and written successfully.\n");
+    (void)fclose(file);
+  } else {
+    (void)fprintf(stderr, "Failed to create file.\n");
+  }
+  return 0;
+}
+
+/*
+ * @breif HandleDiskCmmand - Execute the commadn DUF
+ * @retunr 0
+ */
+int HandleDiskCommand() {
+  char *const df_arg[] = {"-h", "--all", NULL};
+  exe("/usr/bin/duf", df_arg);
+  return 0;
+}
+
+/*
+ * @breif HandlOptions - match the argument entered
+ * @param option - which the arguments entered
+ * @retunr 0 or 1 if didn't match
+ */
+int HandlOptions(char *option) {
+
+  // helper command
+  if (strcmp(option, "-h") == 0 || strcmp(option, "--help") == 0) {
+    return PrintHelp();
+  }
+  // version command
+  if (strcmp(option, "-V") == 0 || strcmp(option, "--version") == 0) {
+    return PrintVersion();
+  }
+  // weight command
+  if (strcmp(option, "-w") == 0 || strcmp(option, "--weight") == 0) {
+    return HandleWeightCommand();
+  }
+  // create command
+  if (strcmp(option, "-c") == 0 || strcmp(option, "--create") == 0) {
+    return HandleCreateCommand();
+  }
+  // disk command
+  if (strcmp(option, "-d") == 0 || strcmp(option, "--disk") == 0) {
+    return HandleDiskCommand();
+  }
+  return 1;
+}
+
+// main workflow
 int WorkFlow(char *argv[], int __attribute__((__unused__)) argc) {
   for (int i = 1; i < argc; i++) {
     switch (argv[i][0]) {
     case '-':
-      // helper command
-      if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
-        printf("%s\n", HELP);
-        return 0; // Exit after printing help
-      }
-      // version command
-      if (strcmp(argv[i], "-V") == 0 || strcmp(argv[i], "--version") == 0) {
-        printf("meltwing 1.0.0\n");
-        return 0; // Exit after printing version
-      }
-      // weight command
-      if (strcmp(argv[i], "-w") == 0 || strcmp(argv[i], "--weight") == 0) {
-        // called the exe function
-        char *const du_arg[] = {"du", "-h", "--max-depth=1", ".", NULL};
-        exe("/usr/bin/du", du_arg);
-        /*
-          execute the command duff
-          char *const duf_args[] = {"--all"};
-          exe("/usr/bin/duf", duf_args);
-          char *duf_arg[] = {"--all"};
-          exe("/usr/bin/duf", duf_arg);
-          execlp("du", "du", du_arg, NULL);
-        */
-        return 0;
-      }
-      // create logs folder
-      if (strcmp(argv[i], "-c") == 0 || strcmp(argv[i], "--create") == 0) {
-        printf("creating...\n");
-        FILE *file = OpenLogs("~/Desktop/lgC/pacman.log", "w", "hello world\n");
-        if (file != NULL) {
-          printf("File created and written successfully.\n");
-          fclose(file);
-        } else {
-          fprintf(stderr, "Failed to create file.\n");
-        }
-        return 0;
-      }
+      HandlOptions(argv[i]);
       break;
     case 'p':
       if (strcmp(argv[i], "push") == 0) {

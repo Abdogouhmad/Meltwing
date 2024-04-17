@@ -11,6 +11,7 @@
 #include <pwd.h>
 // defines
 #define MAXHELP 2000
+#define DIRECTORY_PERMISSIONS 0755
 // bold colors
 #define BBLK "\033[1;30m"
 #define BRED "\033[1;31m"

@@ -13,12 +13,11 @@ char *ExpandPath(const char *path) {
     if (expanded_path == NULL) {
       return NULL;
     }
-    strcpy(expanded_path, home_dir);
-    strcat(expanded_path, path + 1);
+    strlcpy(expanded_path, home_dir, home_len + 1);
+    strlcat(expanded_path, path + 1, home_len + strlen(path) + 1);
     return expanded_path;
-  } else {
-    return strdup(path);
   }
+  return strdup(path);
 }
 
 FILE *OpenLogs(const char *path, const char *mode, const char *content) {
@@ -28,27 +27,27 @@ FILE *OpenLogs(const char *path, const char *mode, const char *content) {
     return NULL;
   }
 
-  char *p = strdup(expanded_path);
-  if (p == NULL) {
+  char *pathfile = strdup(expanded_path);
+  if (pathfile == NULL) {
     perror("Memory allocation error");
     free(expanded_path);
     return NULL;
   }
 
-  char *sep = strchr(p + 1, '/');
+  char *sep = strchr(pathfile + 1, '/');
   while (sep != NULL) {
     *sep = '\0';
-    if (mkdir(p, 0755) && errno != EEXIST) {
-      fprintf(stderr, "Error while trying to create directory %s: %s\n", p,
-              strerror(errno));
-      free(p);
+    if (mkdir(pathfile, DIRECTORY_PERMISSIONS) && errno != EEXIST) {
+      (void)fprintf(stderr, "Error while trying to create directory %s: %s\n",
+              pathfile, strerror(errno));
+      free(pathfile);
       free(expanded_path);
       return NULL;
     }
     *sep = '/';
     sep = strchr(sep + 1, '/');
   }
-  free(p);
+  free(pathfile);
 
   FILE *file = fopen(expanded_path, mode);
   free(expanded_path);
@@ -58,7 +57,7 @@ FILE *OpenLogs(const char *path, const char *mode, const char *content) {
   }
 
   if (content != NULL) {
-    fprintf(file, "%s", content);
+    (void)fprintf(file, "%s", content);
   }
 
   return file;
