@@ -8,6 +8,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <pwd.h>
 // defines
 #define MAXHELP 2000
 // bold colors
@@ -49,11 +50,5 @@ int exe(const char *pathcommand, char *const argemnts[]);
  * @param mode
  * @return FILE*
  */
-FILE *fopen_log(const char *filename, const char *mode, const char *content);
-/**
- * @brief Create a directory
- * @param path
- * @return void
- */
-void rek_mkdir(const char *path);
+FILE *OpenLogs(const char *path, const char *mode, const char *content);
 #endif

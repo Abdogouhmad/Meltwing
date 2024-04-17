@@ -1,5 +1,4 @@
-#include <cmd.h>
-#include <unistd.h>
+#include "../include/cmd.h"
 
 const char HELP[MAXHELP] =
     "   _____           .__     __    __      __ .__                  \n"
@@ -19,7 +18,8 @@ const char HELP[MAXHELP] =
     "Zip your folder 📦\n" GRN "  help\t\t" RESET
     "Print this message or the help of the given subcommand(s)\n\n" BCYN
     "Options:\n\n" RESET GRN "  -w, --weight\t\t" RESET
-    "Measure the files within a directory\n" GRN "  -h, --help\t\t" RESET
+    "Measure the files within a directory\n" GRN "  -c, --create\t\t" RESET
+    "create a file logs within folder log\n" GRN "  -h, --help\t\t" RESET
     "Get help\n" GRN "  -V, --version\t\t" RESET "CLI version\n";
 
 int WorkFlow(char *argv[], int __attribute__((__unused__)) argc) {
@@ -40,25 +40,29 @@ int WorkFlow(char *argv[], int __attribute__((__unused__)) argc) {
       if (strcmp(argv[i], "-w") == 0 || strcmp(argv[i], "--weight") == 0) {
         // called the exe function
         char *const du_arg[] = {"du", "-h", "--max-depth=1", ".", NULL};
-        // execute the command duff
         exe("/usr/bin/du", du_arg);
-        // char *const duf_args[] = {"--all"};
-        // exe("/usr/bin/duf", duf_args);
-        // char *duf_arg[] = {"--all"};
-        // exe("/usr/bin/duf", duf_arg);
-        // execlp("du", "du", du_arg, NULL);
-
-        rek_mkdir("./test_dir");
-        FILE *fp = fopen_log("test_dir/hello.log", "w", "hello world");
-        if (fp == NULL) {
-          printf("Failed to open log file\n");
+        /*
+          execute the command duff
+          char *const duf_args[] = {"--all"};
+          exe("/usr/bin/duf", duf_args);
+          char *duf_arg[] = {"--all"};
+          exe("/usr/bin/duf", duf_arg);
+          execlp("du", "du", du_arg, NULL);
+        */
+        return 0;
+      }
+      // create logs folder
+      if (strcmp(argv[i], "-c") == 0 || strcmp(argv[i], "--create") == 0) {
+        printf("creating...\n");
+        FILE *file = OpenLogs("~/Desktop/lgC/pacman.log", "w", "hello world\n");
+        if (file != NULL) {
+          printf("File created and written successfully.\n");
+          fclose(file);
         } else {
-          printf("Log file opened successfully\n");
-          fclose(fp);
+          fprintf(stderr, "Failed to create file.\n");
         }
         return 0;
       }
-
       break;
     case 'p':
       if (strcmp(argv[i], "push") == 0) {
