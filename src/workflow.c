@@ -1,4 +1,6 @@
 #include "../include/cmd.h"
+#include <stdio.h>
+#include <string.h>
 
 const char HELP[MAXHELP] =
     "   _____           .__     __    __      __ .__                  \n"
@@ -106,28 +108,18 @@ int HandlOptions(char *option) {
   if (strcmp(option, "-d") == 0 || strcmp(option, "--disk") == 0) {
     return HandleDiskCommand();
   }
-  return 1;
+  if (strcmp(option, "push") == 0) {
+    printf("Pushing ... \n");
+    return 0;
+  }
+  Print_ERROR(option);
+  return 0;
 }
 
 // main workflow
 int WorkFlow(char *argv[], int __attribute__((__unused__)) argc) {
   for (int i = 1; i < argc; i++) {
-    switch (argv[i][0]) {
-    case '-':
-      HandlOptions(argv[i]);
-      break;
-    case 'p':
-      if (strcmp(argv[i], "push") == 0) {
-        printf("Pushing\n");
-        return 0; // Exit after handling "push" command
-      }
-      break;
-    default:
-      printf(BRED "Invalid option. Use '-h' or '--help' for usage "
-                  "information.\n" RESET);
-      return 1;
-      break;
-    }
+    HandlOptions(argv[i]);
   }
   return 0;
 }

@@ -1,0 +1,450 @@
+---
+USR:             '0000000000000000000000000000000000000000'
+ChildFunctions:
+  - USR:             'A1328FAAFE6623B4502ED20FBEA2C172695A0CC1'
+    Name:            'WorkFlow'
+    Description:
+      - Kind:            'FullComment'
+        Children:
+          - Kind:            'ParagraphComment'
+            Children:
+              - Kind:            'TextComment'
+          - Kind:            'BlockCommandComment'
+            Name:            'brief'
+            Children:
+              - Kind:            'ParagraphComment'
+                Children:
+                  - Kind:            'TextComment'
+                    Text:            ' Executes a workflow based on the provided arguments.'
+          - Kind:            'ParagraphComment'
+            Children:
+              - Kind:            'TextComment'
+                Text:            ' This function takes an array of strings as input, representing command-line arguments,'
+              - Kind:            'TextComment'
+                Text:            ' and an integer representing the number of arguments. It performs some workflow based'
+              - Kind:            'TextComment'
+                Text:            ' on the provided arguments.'
+          - Kind:            'ParagraphComment'
+            Children:
+              - Kind:            'TextComment'
+          - Kind:            'ParamCommandComment'
+            Direction:       '[in]'
+            ParamName:       'argv'
+            Children:
+              - Kind:            'ParagraphComment'
+                Children:
+                  - Kind:            'TextComment'
+                    Text:            ' An array of strings containing the command-line arguments.'
+                  - Kind:            'TextComment'
+          - Kind:            'ParamCommandComment'
+            Direction:       '[in]'
+            ParamName:       'argc'
+            Children:
+              - Kind:            'ParagraphComment'
+                Children:
+                  - Kind:            'TextComment'
+                    Text:            ' The number of command-line arguments passed to the function.'
+          - Kind:            'ParagraphComment'
+            Children:
+              - Kind:            'TextComment'
+          - Kind:            'BlockCommandComment'
+            Name:            'return'
+            Children:
+              - Kind:            'ParagraphComment'
+                Children:
+                  - Kind:            'TextComment'
+                    Text:            ' An integer representing the status of the workflow execution.'
+                  - Kind:            'TextComment'
+                    Text:            '         0 if the workflow executed successfully, otherwise a non-zero value'
+                  - Kind:            'TextComment'
+                    Text:            '         indicating an error.'
+          - Kind:            'ParagraphComment'
+            Children:
+              - Kind:            'TextComment'
+          - Kind:            'BlockCommandComment'
+            Name:            'note'
+            Children:
+              - Kind:            'ParagraphComment'
+                Children:
+                  - Kind:            'TextComment'
+                    Text:            ' This function is designed to be used as a callback or entry point for'
+                  - Kind:            'TextComment'
+                    Text:            '       executing a specific workflow.'
+          - Kind:            'ParagraphComment'
+            Children:
+              - Kind:            'TextComment'
+          - Kind:            'BlockCommandComment'
+            Name:            'warning'
+            Children:
+              - Kind:            'ParagraphComment'
+                Children:
+                  - Kind:            'TextComment'
+                    Text:            ' The `argc` parameter is currently marked as unused, but it is provided'
+                  - Kind:            'TextComment'
+                    Text:            '          for consistency with the standard C main function signature.'
+      - Kind:            'FullComment'
+        Children:
+          - Kind:            'ParagraphComment'
+            Children:
+              - Kind:            'TextComment'
+                Text:            ' main workflow'
+    DefLocation:
+      LineNumber:      113
+      Filename:        'src/workflow.c'
+    Location:
+      - LineNumber:      60
+        Filename:        'include/cmd.h'
+      - LineNumber:      60
+        Filename:        'src/../include/cmd.h'
+    Params:
+      - Type:
+          Name:            'char *[]'
+          QualName:        'char *[]'
+        Name:            'argv'
+      - Type:
+          Name:            'int'
+          QualName:        'int'
+        Name:            'argc'
+    ReturnType:
+      Type:
+        Name:            'int'
+        QualName:        'int'
+  - USR:             '620CA2D6FB82A1EBB018E7DAD55AEAF49AA21813'
+    Name:            'exe'
+    Description:
+      - Kind:            'FullComment'
+        Children:
+          - Kind:            'ParagraphComment'
+            Children:
+              - Kind:            'TextComment'
+          - Kind:            'BlockCommandComment'
+            Name:            'brief'
+            Children:
+              - Kind:            'ParagraphComment'
+                Children:
+                  - Kind:            'TextComment'
+                    Text:            ' Execute a command'
+                  - Kind:            'TextComment'
+          - Kind:            'ParamCommandComment'
+            Direction:       '[in]'
+            ParamName:       'pathcommand'
+            Children:
+              - Kind:            'ParagraphComment'
+                Children:
+                  - Kind:            'TextComment'
+          - Kind:            'ParamCommandComment'
+            Direction:       '[in]'
+            ParamName:       'argemnts'
+            Children:
+              - Kind:            'ParagraphComment'
+                Children:
+                  - Kind:            'TextComment'
+          - Kind:            'BlockCommandComment'
+            Name:            'return'
+            Children:
+              - Kind:            'ParagraphComment'
+                Children:
+                  - Kind:            'TextComment'
+                    Text:            ' int'
+    DefLocation:
+      LineNumber:      3
+      Filename:        'src/exe.c'
+    Location:
+      - LineNumber:      67
+        Filename:        'include/cmd.h'
+      - LineNumber:      67
+        Filename:        'src/../include/cmd.h'
+    Params:
+      - Type:
+          Name:            'const char *'
+          QualName:        'const char *'
+        Name:            'pathcommand'
+      - Type:
+          Name:            'char *const[]'
+          QualName:        'char *const[]'
+        Name:            'argemnts'
+    ReturnType:
+      Type:
+        Name:            'int'
+        QualName:        'int'
+  - USR:             'A9D352CA9FAA5D784452D98DEF8D938BFAD80989'
+    Name:            'OpenLogs'
+    Description:
+      - Kind:            'FullComment'
+        Children:
+          - Kind:            'ParagraphComment'
+            Children:
+              - Kind:            'TextComment'
+          - Kind:            'BlockCommandComment'
+            Name:            'brief'
+            Children:
+              - Kind:            'ParagraphComment'
+                Children:
+                  - Kind:            'TextComment'
+                    Text:            ' Open a log file'
+                  - Kind:            'TextComment'
+                    Text:            ' **create a dir called log if it doesn''t exist inside it would**'
+                  - Kind:            'TextComment'
+                    Text:            ' create a file log.log'
+                  - Kind:            'TextComment'
+                    Text:            ' brief example: log/pacman.log or log/yay.log'
+                  - Kind:            'TextComment'
+          - Kind:            'ParamCommandComment'
+            Direction:       '[in]'
+            ParamName:       'filename'
+            Children:
+              - Kind:            'ParagraphComment'
+                Children:
+                  - Kind:            'TextComment'
+          - Kind:            'ParamCommandComment'
+            Direction:       '[in]'
+            ParamName:       'mode'
+            Children:
+              - Kind:            'ParagraphComment'
+                Children:
+                  - Kind:            'TextComment'
+          - Kind:            'BlockCommandComment'
+            Name:            'return'
+            Children:
+              - Kind:            'ParagraphComment'
+                Children:
+                  - Kind:            'TextComment'
+                    Text:            ' FILE*'
+    DefLocation:
+      LineNumber:      23
+      Filename:        'src/log.c'
+    Location:
+      - LineNumber:      77
+        Filename:        'include/cmd.h'
+      - LineNumber:      77
+        Filename:        'src/../include/cmd.h'
+    Params:
+      - Type:
+          Name:            'const char *'
+          QualName:        'const char *'
+        Name:            'path'
+      - Type:
+          Name:            'const char *'
+          QualName:        'const char *'
+        Name:            'mode'
+      - Type:
+          Name:            'const char *'
+          QualName:        'const char *'
+        Name:            'content'
+    ReturnType:
+      Type:
+        Name:            'FILE *'
+        QualName:        'FILE *'
+  - USR:             '6E90254923AA7893FCC1E3CA3E18FB200FA52202'
+    Name:            'Print_ERRO'
+    Location:
+      - LineNumber:      78
+        Filename:        'include/cmd.h'
+      - LineNumber:      78
+        Filename:        'src/../include/cmd.h'
+    Params:
+      - Type:
+          Name:            'char *[]'
+          QualName:        'char *[]'
+        Name:            'argv'
+      - Type:
+          Name:            'int'
+          QualName:        'int'
+        Name:            'argc'
+    ReturnType:
+      Type:
+        Name:            'int'
+        QualName:        'int'
+  - USR:             'A7A65A3DB72F82A3664C401910AA94C9F7058A20'
+    Name:            'ExpandPath'
+    DefLocation:
+      LineNumber:      3
+      Filename:        'src/log.c'
+    Params:
+      - Type:
+          Name:            'const char *'
+          QualName:        'const char *'
+        Name:            'path'
+    ReturnType:
+      Type:
+        Name:            'char *'
+        QualName:        'char *'
+  - USR:             'FD57EA7BE1A50F86E7E4A9DEB96389DDF85EEADE'
+    Name:            'main'
+    DefLocation:
+      LineNumber:      3
+      Filename:        'src/main.c'
+    Params:
+      - Type:
+          Name:            'int'
+          QualName:        'int'
+        Name:            'argc'
+      - Type:
+          Name:            'char *[]'
+          QualName:        'char *[]'
+        Name:            'argv'
+    ReturnType:
+      Type:
+        Name:            'int'
+        QualName:        'int'
+  - USR:             '916635C33E34F1EE0C4E6FA615BBF10C255E5491'
+    Name:            'PrintHelp'
+    Description:
+      - Kind:            'FullComment'
+        Children:
+          - Kind:            'ParagraphComment'
+            Children:
+              - Kind:            'TextComment'
+              - Kind:            'InlineCommandComment'
+                Name:            '<not a builtin command>'
+              - Kind:            'TextComment'
+                Text:            ' PrintHelp - print the manual of the cli tool'
+              - Kind:            'TextComment'
+              - Kind:            'InlineCommandComment'
+                Name:            '<not a builtin command>'
+              - Kind:            'TextComment'
+                Text:            ' 0'
+    DefLocation:
+      LineNumber:      31
+      Filename:        'src/workflow.c'
+    ReturnType:
+      Type:
+        Name:            'int'
+        QualName:        'int'
+  - USR:             'E3B015A6B1727D070E6B733231839455D91B3277'
+    Name:            'PrintVersion'
+    Description:
+      - Kind:            'FullComment'
+        Children:
+          - Kind:            'ParagraphComment'
+            Children:
+              - Kind:            'TextComment'
+              - Kind:            'InlineCommandComment'
+                Name:            '<not a builtin command>'
+              - Kind:            'TextComment'
+                Text:            ' PrintVersion - print the version of the CLI'
+              - Kind:            'TextComment'
+              - Kind:            'InlineCommandComment'
+                Name:            '<not a builtin command>'
+              - Kind:            'TextComment'
+                Text:            ' 0'
+    DefLocation:
+      LineNumber:      40
+      Filename:        'src/workflow.c'
+    ReturnType:
+      Type:
+        Name:            'int'
+        QualName:        'int'
+  - USR:             '2BB1A9B5F58DB8154433FB62E09F91FC57DBCFF2'
+    Name:            'HandleWeightCommand'
+    Description:
+      - Kind:            'FullComment'
+        Children:
+          - Kind:            'ParagraphComment'
+            Children:
+              - Kind:            'TextComment'
+              - Kind:            'InlineCommandComment'
+                Name:            '<not a builtin command>'
+              - Kind:            'TextComment'
+                Text:            ' HandleWeightCommand - Execute the command du with important paramaters'
+              - Kind:            'TextComment'
+              - Kind:            'InlineCommandComment'
+                Name:            '<not a builtin command>'
+              - Kind:            'TextComment'
+                Text:            ' 0'
+    DefLocation:
+      LineNumber:      49
+      Filename:        'src/workflow.c'
+    ReturnType:
+      Type:
+        Name:            'int'
+        QualName:        'int'
+  - USR:             '9745833DAF2DCD9F5C746E939FDE1F9ED0A7CEC1'
+    Name:            'HandleCreateCommand'
+    Description:
+      - Kind:            'FullComment'
+        Children:
+          - Kind:            'ParagraphComment'
+            Children:
+              - Kind:            'TextComment'
+              - Kind:            'InlineCommandComment'
+                Name:            '<not a builtin command>'
+              - Kind:            'TextComment'
+                Text:            ' HandleCreateCommand - create file log within lgC in desktop folder'
+              - Kind:            'TextComment'
+                Text:            ' it is tempo command that I will use later on'
+              - Kind:            'TextComment'
+              - Kind:            'InlineCommandComment'
+                Name:            '<not a builtin command>'
+              - Kind:            'TextComment'
+                Text:            ' 0 or error if the file failed to create'
+    DefLocation:
+      LineNumber:      60
+      Filename:        'src/workflow.c'
+    ReturnType:
+      Type:
+        Name:            'int'
+        QualName:        'int'
+  - USR:             '396AF67C6538C73ADE91AA7B54F778B91AC58B8D'
+    Name:            'HandleDiskCommand'
+    Description:
+      - Kind:            'FullComment'
+        Children:
+          - Kind:            'ParagraphComment'
+            Children:
+              - Kind:            'TextComment'
+              - Kind:            'InlineCommandComment'
+                Name:            '<not a builtin command>'
+              - Kind:            'TextComment'
+                Text:            ' HandleDiskCmmand - Execute the commadn DUF'
+              - Kind:            'TextComment'
+              - Kind:            'InlineCommandComment'
+                Name:            '<not a builtin command>'
+              - Kind:            'TextComment'
+                Text:            ' 0'
+    DefLocation:
+      LineNumber:      76
+      Filename:        'src/workflow.c'
+    ReturnType:
+      Type:
+        Name:            'int'
+        QualName:        'int'
+  - USR:             '882BE0FF2A5D3BB31379C0C5A91F6EB33AB978B1'
+    Name:            'HandlOptions'
+    Description:
+      - Kind:            'FullComment'
+        Children:
+          - Kind:            'ParagraphComment'
+            Children:
+              - Kind:            'TextComment'
+              - Kind:            'InlineCommandComment'
+                Name:            '<not a builtin command>'
+              - Kind:            'TextComment'
+                Text:            ' HandlOptions - match the argument entered'
+              - Kind:            'TextComment'
+          - Kind:            'ParamCommandComment'
+            Direction:       '[in]'
+            ParamName:       'option'
+            Children:
+              - Kind:            'ParagraphComment'
+                Children:
+                  - Kind:            'TextComment'
+                    Text:            ' - which the arguments entered'
+                  - Kind:            'TextComment'
+                  - Kind:            'InlineCommandComment'
+                    Name:            '<not a builtin command>'
+                  - Kind:            'TextComment'
+                    Text:            ' 0 or 1 if didn''t match'
+    DefLocation:
+      LineNumber:      87
+      Filename:        'src/workflow.c'
+    Params:
+      - Type:
+          Name:            'char *'
+          QualName:        'char *'
+        Name:            'option'
+    ReturnType:
+      Type:
+        Name:            'int'
+        QualName:        'int'
+...
