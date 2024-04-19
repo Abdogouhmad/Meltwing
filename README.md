@@ -32,11 +32,11 @@ Options:
   -h, --help		  Get help
   -V, --version	  CLI version
 ```
-# Availble features
+# available features
 - [x] Error handling
 - [x] performance
 
-# Availble Command and Command options
+# Available command and Command options
 
 - [x] weight command
 - [x] disk command
