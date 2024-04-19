@@ -18,11 +18,13 @@ const char HELP[MAXHELP] =
     "Create release tag through the shell command 🙂\n" GRN "  zip\t\t\t" RESET
     "Zip your folder 📦\n" GRN "  help\t\t\t" RESET
     "Print this message or the help of the given subcommand(s)\n\n" BCYN
-    "Options:\n\n" RESET GRN "  -d, --disk\t\t" RESET
-    "Analysis your disk partition\n" GRN "  -w, --weight\t\t" RESET
-    "Measure the files within a directory\n" GRN "  -c, --create\t\t" RESET
-    "create a file logs within folder log\n" GRN "  -h, --help\t\t" RESET
-    "Get help\n" GRN "  -V, --version\t\t" RESET "CLI version\n";
+    "Options:\n\n" RESET GRN "  -l, --list\t\t" RESET
+    "List the pacman and yay packages that needs to be updated\n" GRN
+    "  -d, --disk\t\t" RESET "Analysis your disk partition\n" GRN
+    "  -w, --weight\t\t" RESET "Measure the files within a directory\n" GRN
+    "  -c, --create\t\t" RESET "create a file logs within folder log\n" GRN
+    "  -h, --help\t\t" RESET "Get help\n" GRN "  -V, --version\t\t" RESET
+    "CLI version\n";
 
 /*
  * @breif PrintHelp - print the manual of the cli tool
