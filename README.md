@@ -2,7 +2,7 @@
 Meltwinhg is a simple that built upon C language for matter of performance and
 learning outcome. In other words, I missed C :smile:.
 
-![CLI](./img/cli.png)
+![CLI](./img/CLI.png)
 
 # available features
 - [x] Error handling
