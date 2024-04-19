@@ -1,6 +1,4 @@
 #include "../include/cmd.h"
-#include <stdio.h>
-#include <string.h>
 
 const char HELP[MAXHELP] =
     "   _____           .__     __    __      __ .__                  \n"
@@ -81,6 +79,14 @@ int HandleDiskCommand() {
   return 0;
 }
 
+int HandlPackageListing() {
+  char *const list[] = {"/usr/bin/pacman", "-Qu", "--color=always", NULL};
+  char *const listing[] = {"/usr/bin/yay", "-Qu", NULL};
+  exe("/usr/bin/yay", listing);
+  exe("/usr/bin/pacman", list);
+  return 0;
+}
+
 /*
  * @breif HandlOptions - match the argument entered
  * @param option - which the arguments entered
@@ -108,9 +114,9 @@ int HandlOptions(char *option) {
   if (strcmp(option, "-d") == 0 || strcmp(option, "--disk") == 0) {
     return HandleDiskCommand();
   }
-  if (strcmp(option, "push") == 0) {
-    printf("Pushing ... \n");
-    return 0;
+  // list the updates
+  if (strcmp(option, "-l") == 0 || strcmp(option, "--list") == 0) {
+    return HandlPackageListing();
   }
   Print_ERROR(option);
   return 0;

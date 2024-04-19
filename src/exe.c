@@ -1,4 +1,5 @@
 #include "../include/cmd.h"
+#include <unistd.h>
 
 int exe(const char *pathcommand, char *const argemnts[]) {
   // check if the command path is declared if not print error
@@ -16,7 +17,7 @@ int exe(const char *pathcommand, char *const argemnts[]) {
   // command execve(pathcommand, argemnts, NULL); // worked but not
   // effectively
   // execvp(pathcommand, argemnts); // worked as command but didn't work for duf
-  execv(pathcommand, argemnts);
+  execvp(pathcommand, argemnts);
   // print error during failed
   perror("Failed to execute the command");
   exit(EXIT_FAILURE);
