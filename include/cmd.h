@@ -64,6 +64,7 @@ int WorkFlow(char *argv[], int __attribute__((__unused__)) argc);
  * @return int
  */
 int exe(const char *pathcommand, char *const argemnts[]);
+
 /**
  * @brief Open a log file
  * **create a dir called log if it doesn't exist inside it would**
@@ -74,5 +75,11 @@ int exe(const char *pathcommand, char *const argemnts[]);
  * @return FILE*
  */
 FILE *OpenLogs(const char *path, const char *mode, const char *content);
-int Print_ERROR(char *arg);
+/*
+* @brief Print the error when the argument didn't match
+* @param filename
+* @return exit (1)
+*/
+int PrintERROR(char *arg);
+
 #endif

@@ -1,6 +1,6 @@
 #include "../include/cmd.h"
 
-int Print_ERROR(char *arg) {
+int PrintERROR(char *arg) {
   // check if the argument has signiture of the option arg
   if (strstr(arg, "-")) {
     const char Error_arg[] =

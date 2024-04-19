@@ -120,7 +120,7 @@ int HandlOptions(char *option) {
   if (strcmp(option, "-l") == 0 || strcmp(option, "--list") == 0) {
     return HandlPackageListing();
   }
-  Print_ERROR(option);
+  PrintERROR(option);
   return 0;
 }
 
