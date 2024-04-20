@@ -1,7 +1,6 @@
 #include <cmd.h>
 #include <sys.h>
 
-
 const char HELP[MAXHELP] =
     "   _____           .__     __    __      __ .__                  \n"
     "  /     \\    ____  |  |  _/  |_ /  \\    /  \\|__|  ____     ____  \n"
@@ -24,7 +23,10 @@ const char HELP[MAXHELP] =
     "List the pacman and yay packages that needs to be updated\n" GRN
     "  -d, --disk\t\t" RESET "Analysis your disk partition\n" GRN
     "  -w, --weight\t\t" RESET "Measure the files within a directory\n" GRN
-    "  -p, --pacman\t\t" RESET "Update pacman packages with store the logs in desktop\n" GRN
+    "  -p, --pacman\t\t" RESET
+    "Update pacman packages with store the logs in desktop\n" GRN
+    "  -y, --yay\t\t" RESET
+    "Update pacman packages with store the logs in desktop\n" GRN
     "  -h, --help\t\t" RESET "Get help\n" GRN "  -V, --version\t\t" RESET
     "CLI version\n";
 
@@ -57,23 +59,29 @@ int HandleWeightCommand() {
 }
 
 /**
- * @brief HandlePacman - small function that call updateSys to update pacman packages
+ * @brief HandlePacman - small function that call updateSys to update pacman
+ * packages
  * @return 0
-*/
+ */
 int HandlePacman() {
   printf(BYEL "Updating Pacman...\n" RESET);
-  UpdateSys("sudo pacman -Syu --noconfirm");
-  return 0;
+  return UpdateSys("sudo pacman -Syu --noconfirm");
 }
-
+/*
+ * @breif HandleYay - Update yay packages
+ * @retunr 0
+ */
+int HandleYay() {
+  printf(BYEL "Updating Yay ...\n" RESET);
+  return UpdateSys("yay -Syu --noconfirm");
+}
 /*
  * @breif HandleDiskCmmand - Execute the commadn DUF
  * @retunr 0
  */
 int HandleDiskCommand() {
   char *const df_arg[] = {"-h", "--all", NULL};
-  exe("/usr/bin/duf", df_arg);
-  return 0;
+  return exe("/usr/bin/duf", df_arg);
 }
 
 int HandlPackageListing() {
@@ -103,10 +111,6 @@ int HandlOptions(char *option) {
   if (strcmp(option, "-w") == 0 || strcmp(option, "--weight") == 0) {
     return HandleWeightCommand();
   }
-  // Update Pacman
-  if (strcmp(option, "-p") == 0 || strcmp(option, "--pacman") == 0) {
-    return HandlePacman();
-  }
   // disk command
   if (strcmp(option, "-d") == 0 || strcmp(option, "--disk") == 0) {
     return HandleDiskCommand();
@@ -114,6 +118,14 @@ int HandlOptions(char *option) {
   // list the updates
   if (strcmp(option, "-l") == 0 || strcmp(option, "--list") == 0) {
     return HandlPackageListing();
+  }
+  // Update Pacman
+  if (strcmp(option, "-p") == 0 || strcmp(option, "--pacman") == 0) {
+    return HandlePacman();
+  }
+  // Update Yay
+  if (strcmp(option, "-y") == 0 || strcmp(option, "--yay") == 0) {
+    return HandleYay();
   }
   PrintERROR(option);
   return 0;
