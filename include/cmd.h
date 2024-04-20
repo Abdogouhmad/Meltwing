@@ -11,7 +11,7 @@
 #include <pwd.h>
 // defines
 #define MAXHELP 2000
-#define DIRECTORY_PERMISSIONS 0755
+
 // bold colors
 #define BBLK "\033[1;30m"
 #define BRED "\033[1;31m"
@@ -64,17 +64,6 @@ int WorkFlow(char *argv[], int __attribute__((__unused__)) argc);
  * @return int
  */
 int exe(const char *pathcommand, char *const argemnts[]);
-
-/**
- * @brief Open a log file
- * **create a dir called log if it doesn't exist inside it would**
- * create a file log.log
- * brief example: log/pacman.log or log/yay.log
- * @param filename
- * @param mode
- * @return FILE*
- */
-FILE *OpenLogs(const char *path, const char *mode, const char *content);
 /*
 * @brief Print the error when the argument didn't match
 * @param filename

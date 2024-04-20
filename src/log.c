@@ -1,4 +1,4 @@
-#include "../include/cmd.h"
+#include <sys.h>
 
 char *ExpandPath(const char *path) {
   if (path[0] == '~') {
@@ -20,7 +20,7 @@ char *ExpandPath(const char *path) {
   return strdup(path);
 }
 
-FILE *OpenLogs(const char *path, const char *mode, const char *content) {
+FILE *OpenLogs(const char *path, const char *mode) {
   char *expanded_path = ExpandPath(path);
   if (expanded_path == NULL) {
     perror("Failed to expand path");
@@ -39,7 +39,7 @@ FILE *OpenLogs(const char *path, const char *mode, const char *content) {
     *sep = '\0';
     if (mkdir(pathfile, DIRECTORY_PERMISSIONS) && errno != EEXIST) {
       (void)fprintf(stderr, "Error while trying to create directory %s: %s\n",
-              pathfile, strerror(errno));
+                    pathfile, strerror(errno));
       free(pathfile);
       free(expanded_path);
       return NULL;
@@ -55,10 +55,5 @@ FILE *OpenLogs(const char *path, const char *mode, const char *content) {
     perror("Failed to open file");
     return NULL;
   }
-
-  if (content != NULL) {
-    (void)fprintf(file, "%s", content);
-  }
-
   return file;
 }

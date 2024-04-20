@@ -1,4 +1,6 @@
-#include "../include/cmd.h"
+#include <cmd.h>
+#include <sys.h>
+
 
 const char HELP[MAXHELP] =
     "   _____           .__     __    __      __ .__                  \n"
@@ -22,7 +24,7 @@ const char HELP[MAXHELP] =
     "List the pacman and yay packages that needs to be updated\n" GRN
     "  -d, --disk\t\t" RESET "Analysis your disk partition\n" GRN
     "  -w, --weight\t\t" RESET "Measure the files within a directory\n" GRN
-    "  -c, --create\t\t" RESET "create a file logs within folder log\n" GRN
+    "  -p, --pacman\t\t" RESET "Update pacman packages with store the logs in desktop\n" GRN
     "  -h, --help\t\t" RESET "Get help\n" GRN "  -V, --version\t\t" RESET
     "CLI version\n";
 
@@ -54,20 +56,13 @@ int HandleWeightCommand() {
   return 0;
 }
 
-/*
- * @breif HandleCreateCommand - create file log within lgC in desktop folder
- * it is tempo command that I will use later on
- * @retunr 0 or error if the file failed to create
- */
-int HandleCreateCommand() {
-  printf("creating...\n");
-  FILE *file = OpenLogs("~/Desktop/lgC/pacman.log", "w", "hello world\n");
-  if (file != NULL) {
-    printf("File created and written successfully.\n");
-    (void)fclose(file);
-  } else {
-    (void)fprintf(stderr, "Failed to create file.\n");
-  }
+/**
+ * @brief HandlePacman - small function that call updateSys to update pacman packages
+ * @return 0
+*/
+int HandlePacman() {
+  printf(BYEL "Updating Pacman...\n" RESET);
+  UpdateSys("sudo pacman -Syu --noconfirm");
   return 0;
 }
 
@@ -108,9 +103,9 @@ int HandlOptions(char *option) {
   if (strcmp(option, "-w") == 0 || strcmp(option, "--weight") == 0) {
     return HandleWeightCommand();
   }
-  // create command
-  if (strcmp(option, "-c") == 0 || strcmp(option, "--create") == 0) {
-    return HandleCreateCommand();
+  // Update Pacman
+  if (strcmp(option, "-p") == 0 || strcmp(option, "--pacman") == 0) {
+    return HandlePacman();
   }
   // disk command
   if (strcmp(option, "-d") == 0 || strcmp(option, "--disk") == 0) {
