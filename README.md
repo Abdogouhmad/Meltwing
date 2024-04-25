@@ -21,3 +21,4 @@ learning outcome. In other words, I missed C :smile:.
 - [x] pacman command
 - [x] yay command
 - [ ] clone command
+- [ ] releas command
