@@ -1,5 +1,5 @@
-#include <cmd.h>
-#include <sys.h>
+#include "../include/cmd.h"
+#include "../include/sys.h"
 
 const char HELP[MAXHELP] =
     "   _____           .__     __    __      __ .__                  \n"
@@ -126,6 +126,10 @@ int HandlOptions(char *option) {
   // Update Yay
   if (strcmp(option, "-y") == 0 || strcmp(option, "--yay") == 0) {
     return HandleYay();
+  }
+  // clean the logs
+  if (strcmp(option, "-c") == 0 || strcmp(option, "--clean") == 0) {
+    return CleanLogs("~/Desktop/logs/");
   }
   PrintERROR(option);
   return 0;

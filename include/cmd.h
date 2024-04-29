@@ -1,14 +1,15 @@
 #ifndef CMD_H
 #define CMD_H
 // libs header
+#include <dirent.h>
 #include <errno.h>
+#include <pwd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <unistd.h>
-#include <pwd.h>
 // defines
 #define MAXHELP 2000
 
@@ -39,13 +40,13 @@
 /**
  * @brief Executes a workflow based on the provided arguments.
  *
- * This function takes an array of strings as input, representing command-line arguments,
- * and an integer representing the number of arguments. It performs some workflow based
- * on the provided arguments.
+ * This function takes an array of strings as input, representing command-line
+ * arguments, and an integer representing the number of arguments. It performs
+ * some workflow based on the provided arguments.
  *
  * @param argv An array of strings containing the command-line arguments.
  * @param argc The number of command-line arguments passed to the function.
- * 
+ *
  * @return An integer representing the status of the workflow execution.
  *         0 if the workflow executed successfully, otherwise a non-zero value
  *         indicating an error.
@@ -53,8 +54,8 @@
  * @note This function is designed to be used as a callback or entry point for
  *       executing a specific workflow.
  *
- * @warning The `argc` parameter is currently marked as unused, but it is provided
- *          for consistency with the standard C main function signature.
+ * @warning The `argc` parameter is currently marked as unused, but it is
+ * provided for consistency with the standard C main function signature.
  */
 int WorkFlow(char *argv[], int __attribute__((__unused__)) argc);
 /**
@@ -65,10 +66,16 @@ int WorkFlow(char *argv[], int __attribute__((__unused__)) argc);
  */
 int exe(const char *pathcommand, char *const argemnts[]);
 /*
-* @brief Print the error when the argument didn't match
-* @param filename
-* @return exit (1)
-*/
+ * @brief Print the error when the argument didn't match
+ * @param filename
+ * @return exit (1)
+ */
 int PrintERROR(char *arg);
 
+/*
+ * @brief Delete the file logs in desktop
+ * @param file log path
+ * @return eithe 0 or 1 exit
+ */
+int CleanLogs(const char *PathLog);
 #endif

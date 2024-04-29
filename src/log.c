@@ -1,20 +1,22 @@
-#include <sys.h>
+#include "../include/sys.h"
 
 char *ExpandPath(const char *path) {
   if (path[0] == '~') {
-    const char *home_dir;
-    if ((home_dir = getenv("HOME")) == NULL) {
-      if ((home_dir = getpwuid(getuid())->pw_dir) == NULL) {
+    const char *home_dir = getenv("HOME");
+    if (home_dir == NULL) {
+      struct passwd *pw = getpwuid(getuid());
+      if (pw == NULL) {
         return NULL;
       }
+      home_dir = pw->pw_dir;
     }
     size_t home_len = strlen(home_dir);
     char *expanded_path = malloc(home_len + strlen(path) + 1);
     if (expanded_path == NULL) {
       return NULL;
     }
-    strlcpy(expanded_path, home_dir, home_len + 1);
-    strlcat(expanded_path, path + 1, home_len + strlen(path) + 1);
+    (void)snprintf(expanded_path, home_len + strlen(path) + 1, "%s/%s",
+                   home_dir, path + 1);
     return expanded_path;
   }
   return strdup(path);

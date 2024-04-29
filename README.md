@@ -20,5 +20,7 @@ learning outcome. In other words, I missed C :smile:.
 - [x] help command
 - [x] pacman command
 - [x] yay command
+- [x] clean the logs command 
 - [ ] clone command
 - [ ] release command
+- [ ] push command

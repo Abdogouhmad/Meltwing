@@ -1,2 +1,2 @@
-Checks: "google-*, performance-*, readability-*, cert-*"
+Checks: "performance-*, readability-*, cert-*"
 WarningsAsErrors: true

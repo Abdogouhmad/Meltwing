@@ -1,5 +1,5 @@
-#include <sys.h>
-#include <cmd.h>
+#include "../include/cmd.h"
+#include "../include/sys.h"
 
 int UpdateSys(const char *cmd) {
   FILE *FileOpen;
@@ -13,8 +13,8 @@ int UpdateSys(const char *cmd) {
     return -1;
   }
   // name the log file based on command using strstr
-  const char *logFilename =
-      (strstr(cmd, "yay")) ? "~/Desktop/logs/yay.log" : "~/Desktop/logs/pacman.log";
+  const char *logFilename = (strstr(cmd, "yay")) ? "~/Desktop/logs/yay.log"
+                                                 : "~/Desktop/logs/pacman.log";
   // Open the output file for writing
 
   FILE *output = OpenLogs(logFilename, "w");
@@ -25,13 +25,14 @@ int UpdateSys(const char *cmd) {
   }
   // Read the command output line by line and write to the file
   while (fgets(buffer, sizeof(buffer), FileOpen) != NULL) {
-    fprintf(output, "%s", buffer);
+    (void)fprintf(output, "%s", buffer);
   }
 
   // Close the pipe and the output file
   pclose(FileOpen);
-  fclose(output);
+  (void)fclose(output);
 
-  printf(BGRN "Command output successfully stored in Desktop/logs folder\n" RESET);
+  printf(BGRN
+         "Command output successfully stored in Desktop/logs folder\n" RESET);
   return 0;
 }

@@ -24,8 +24,10 @@
  * @param mode
  * @return FILE*
  */
+
 FILE *OpenLogs(const char *path, const char *mode);
 
+char *ExpandPath(const char *path);
 /**
  * @brief Update the system packages
  * @param cmd
