@@ -1,7 +1,5 @@
 #include "../include/cmd.h"
 #include "../include/sys.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 int CleanLogs(const char *PathLog) {
   // convert the ~/ to /home/username/Desktop/logs

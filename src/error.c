@@ -18,5 +18,5 @@ int PrintERROR(char *arg) {
              " '--help / -h'. \n";
     (void)fprintf(stderr, Error_arg, arg);
   }
-  exit(1);
+  exit(EXIT_FAILURE);
 }

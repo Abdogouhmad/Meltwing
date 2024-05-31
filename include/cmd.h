@@ -57,7 +57,7 @@
  * @warning The `argc` parameter is currently marked as unused, but it is
  * provided for consistency with the standard C main function signature.
  */
-int WorkFlow(char *argv[], int __attribute__((__unused__)) argc);
+int OptionCommand(char *argv[], int __attribute__((__unused__)) argc);
 /**
  * @brief Execute a command
  * @param pathcommand

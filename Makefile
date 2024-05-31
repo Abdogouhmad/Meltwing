@@ -6,7 +6,7 @@ SRCEXT := c
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
 CFLAGS := -Wall -pedantic -Werror -g -ggdb -Wextra
-LIB := -L lib
+LIB := -lgit2
 INC := -I include
 LT := clang-tidy
 FT := clang-format 
@@ -34,7 +34,6 @@ format:
 install: $(TARGET)
 	@echo "Install The CLI"
 	@sudo cp ./bin/meltwing /usr/bin/
-
 uninstall:
 	@echo "Uninstall the CLI"
 	@sudo rm /usr/bin/meltwing

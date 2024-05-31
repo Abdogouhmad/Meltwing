@@ -1,7 +1,7 @@
 #include "../include/cmd.h"
 #include "../include/sys.h"
 
-const char HELP[MAXHELP] =
+const char HELP[] =
     "   _____           .__     __    __      __ .__                  \n"
     "  /     \\    ____  |  |  _/  |_ /  \\    /  \\|__|  ____     ____  \n"
     " /  \\ /  \\ _/ __ \\ |  |  \\   __\\\\   \\/\\/   /|  |/    \\   / ___\\ "
@@ -131,12 +131,13 @@ int HandlOptions(char *option) {
   if (strcmp(option, "-c") == 0 || strcmp(option, "--clean") == 0) {
     return CleanLogs("~/Desktop/logs/");
   }
-  PrintERROR(option);
+  // clone
+  // PrintERROR(option);
   return 0;
 }
 
 // main workflow
-int WorkFlow(char *argv[], int __attribute__((__unused__)) argc) {
+int OptionCommand(char *argv[], int __attribute__((__unused__)) argc) {
   for (int i = 1; i < argc; i++) {
     HandlOptions(argv[i]);
   }

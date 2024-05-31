@@ -3,7 +3,7 @@
 Meltwinhg is a simple that built upon C language for matter of performance and
 learning outcome. In other words, I missed C :smile:.
 
-![CLI](./img/CLI.png)
+![CLI](./img/meltwing.jpg)
 
 ## available features
 
@@ -21,6 +21,6 @@ learning outcome. In other words, I missed C :smile:.
 - [x] pacman command
 - [x] yay command
 - [x] clean the logs command 
-- [ ] clone command
+- [x] clone command
 - [ ] release command
 - [ ] push command
