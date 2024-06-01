@@ -22,5 +22,4 @@ learning outcome. In other words, I missed C :smile:.
 - [x] yay command
 - [x] clean the logs command 
 - [x] clone command
-- [ ] release command
 - [ ] push command

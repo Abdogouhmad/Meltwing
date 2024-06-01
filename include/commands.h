@@ -29,5 +29,6 @@
  */
 int CommandArguments(char *argv[], int __attribute__((__unused__)) argc);
 
+int Controlflow(char *cmd);
 int Clone();
 #endif

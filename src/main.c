@@ -1,5 +1,6 @@
 #include "../include/cmd.h"
 #include "../include/commands.h"
+#include <stdio.h>
 
 int main(int __attribute__((__unused__)) argc, char *argv[]) {
 
@@ -8,13 +9,20 @@ int main(int __attribute__((__unused__)) argc, char *argv[]) {
                 "insight.\n" RESET);
     return 1;
   }
+  // option commands
+  if (OptionCommand(argv, argc) != 0) {
+    int rst =
+        fprintf(stderr, "An error occurred while processing the commands.\n");
+    return rst;
+  }
 
-  OptionCommand(argv, argc);
-  // init git
-  // git_libgit2_init();
-  int results = CommandArguments(argv, argc);
-  // shoutdown git
-  // git_libgit2_shutdown();
-  // If no matching option is found
-  return results;
+  // commands
+  if (CommandArguments(argv, argc) != 0) {
+    int rst =
+        fprintf(stderr, "An error occurred while processing the commands.\n");
+    return rst;
+  }
+
+  // return
+  return 0;
 }
